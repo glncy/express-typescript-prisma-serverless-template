@@ -1,0 +1,32 @@
+service: "sls-app"
+
+package:
+  artifact: ${env:SLS_ARTIFACT, ""}
+  patterns:
+    - "!src/**"
+    - "!scripts/**"
+    - "!serverless/**"
+    - "!bundle.zip"
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  stage: ${opt:stage, 'offline'}
+  region: ${opt:region, 'ap-southeast-1'}
+
+custom:
+  prune:
+    automatic: true
+    number: 3
+
+functions:
+  app:
+    handler: ${env:SLS_HANDLER, 'dist/serverless/lambda.handler'}
+    events:
+      - httpApi:
+          path: "/{proxy+}"
+          method: "*"
+
+plugins:
+  - serverless-offline
+  - serverless-prune-plugin
