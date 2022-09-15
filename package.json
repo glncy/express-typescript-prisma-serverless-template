@@ -4,7 +4,7 @@
   "description": "server-app",
   "scripts": {
     "start": "node dist/index.js",
-    "dev": "nodemon -r tsconfig-paths/register ./src/index.ts",
+    "dev": "npx prisma generate && nodemon -r tsconfig-paths/register ./src/index.ts",
     "build": "tsc && tsc-alias",
     "rimraf": "rimraf dist",
     "zip-bundle": "node scripts/zip-bundle && npm run rimraf",
@@ -23,11 +23,16 @@
     "sls-deploy:ncc-fallback:production": "npm run sls-deploy:ncc-fallback -- --stage production",
     "sls-remove": "sls remove",
     "sls-remove:staging": "npm run sls-remove -- --stage staging",
-    "sls-remove:production": "npm run sls-remove -- --stage production"
+    "sls-remove:production": "npm run sls-remove -- --stage production",
+    "prisma:makemigration": "npx prisma migrate dev --name __migration__ --create-only",
+    "prisma:migrate": "npx prisma migrate dev",
+    "prisma:deploy": "npx prisma migrate deploy",
+    "prisma:studio": "npx prisma studio"
   },
   "author": "Algocat Studio",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^4.3.1",
     "aws-lambda": "^1.0.7",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
@@ -44,6 +49,7 @@
     "@vercel/ncc": "^0.34.0",
     "cross-env": "^7.0.3",
     "nodemon": "^2.0.19",
+    "prisma": "^4.3.1",
     "rimraf": "^3.0.2",
     "serverless": "^3.22.0",
     "serverless-offline": "^10.0.2",
