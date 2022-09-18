@@ -1,2 +1,2 @@
-# Typescript + Express + Serverless + Prisma
-This is a template for a Typescript + Express + Serverless + Prisma project.
+# Express + TypeScript + Prisma + Serverless Template
+This is a template for a Express + TypeScript + Prisma + Serverless projects.
