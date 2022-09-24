@@ -1,0 +1,32 @@
+{
+    "builds": [
+        {
+            "src": "dist/src/app.js",
+            "use": "@vercel/node"
+        },
+        {
+            "src": "dist/src/public/**/*",
+            "use": "@vercel/static"
+        }
+    ],
+    "routes": [
+        {
+            "headers": {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "*",
+                "Access-Control-Allow-Headers": "*"
+            },
+            "src": "/js/(.*)",
+            "dest": "dist/src/public/js/$1"
+        },
+        {
+            "headers": {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "*",
+                "Access-Control-Allow-Headers": "*"
+            },
+            "src": "/.*",
+            "dest": "dist/src/app.js"
+        }
+    ]
+}
