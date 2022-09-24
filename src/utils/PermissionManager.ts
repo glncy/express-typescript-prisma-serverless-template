@@ -26,15 +26,17 @@ interface Permissions {
   };
 }
 
-class PermissionManager {
+export class PermissionManager {
   private source: PermissionSource;
   private attributes: string;
   public permissions: Permissions;
+  private divider: string;
 
   constructor(source: PermissionSource) {
     this.source = source;
     this.attributes = "";
     this.permissions = {} as Permissions;
+    this.divider = "|";
     this.initializePermissions();
   }
 
@@ -80,12 +82,35 @@ class PermissionManager {
     return permissions;
   }
 
+  /**
+   * @description
+   * This method will return all attributes values. This is useful for super admin.
+   * @returns {string[]}
+   */
+  public getAllAttributesValues() {
+    let attributes: string[] = [];
+    Object.entries(this.permissions).map((permission) => {
+      Object.entries(permission[1]).map((attribute) => {
+        attributes.push(attribute[1]);
+      });
+    });
+    return attributes;
+  }
+
+  public getAllAttributesInString() {
+    return this.getAllAttributesValues().join(this.divider);
+  }
+
+  public generateStringFromAttributes(attributes: string[]) {
+    return attributes.join(this.divider);
+  }
+
   public setAttributes(attributes: string) {
     this.attributes = attributes;
   }
 
   public hasPermission(permission: string | string[], some: boolean = false) {
-    let attributes = this.attributes.split("|");
+    let attributes = this.attributes.split(this.divider);
     if (typeof permission === "string") {
       return attributes.includes(permission);
     } else {
