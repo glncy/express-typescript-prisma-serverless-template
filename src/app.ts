@@ -4,8 +4,8 @@ import path from "path";
 import { renderFile } from "ejs";
 
 // TypeORM imports
-import "reflect-metadata";
-import db from "@typeorm";
+// import "reflect-metadata";
+// import db from "@typeorm";
 
 const app: Express = express();
 
@@ -23,13 +23,13 @@ routers.map(({ basePath, router }) => {
 });
 
 // TypeORM setup
-db.initialize()
-  .then(() => {
-    console.log("TypeORM connection initialized");
-  })
-  .catch((error) => {
-    console.log("TypeORM connection failed to initialize");
-    console.log(error);
-  });
+// db.initialize()
+//   .then(() => {
+//     console.log("TypeORM connection initialized");
+//   })
+//   .catch((error) => {
+//     console.log("TypeORM connection failed to initialize");
+//     console.log(error);
+//   });
 
 export default app;

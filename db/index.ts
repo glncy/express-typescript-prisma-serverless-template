@@ -1,8 +1,6 @@
 import dotenv from "dotenv";
 import { DataSource } from "typeorm";
-
-// Entity imports
-import { User } from "@/entities/User";
+import * as entities from "@/entities";
 
 const environment = process.env.NODE_ENV || "development";
 if (environment === "development") {
@@ -16,9 +14,7 @@ const db = new DataSource({
   username: process.env.TYPEORM_DB_USERNAME,
   password: process.env.TYPEORM_DB_PASSWORD,
   database: process.env.TYPEORM_DB_NAME,
-  entities: [
-    User,
-  ],
+  entities,
   migrations: ["dist/db/migrations/**/*.js"],
 });
 
