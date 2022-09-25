@@ -20,8 +20,10 @@ const imports: RouterImports = {
   upload,
 };
 
-const apiRoutes: Router[] = [];
+// insert routers here
+const routers: Router[] = [baseRouter];
 
-const routers: Router[] = [baseRouter, ...apiRoutes];
+// api routers
+const apiRouters: Router[] = [];
 
-export default initializeRouters(routers, imports);
+export default initializeRouters([...routers, ...apiRouters], imports);
