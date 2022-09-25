@@ -3,6 +3,10 @@ import routers from "@/routers";
 import path from "path";
 import { renderFile } from "ejs";
 
+// TypeORM imports
+// import "reflect-metadata";
+// import db from "@typeorm";
+
 const app: Express = express();
 
 // view engine setup
@@ -17,5 +21,15 @@ app.use(express.static(path.join(__dirname, "public")));
 routers.map(({ basePath, router }) => {
   app.use(basePath, router);
 });
+
+// TypeORM setup
+// db.initialize()
+//   .then(() => {
+//     console.log("TypeORM connection initialized");
+//   })
+//   .catch((error) => {
+//     console.log("TypeORM connection failed to initialize");
+//     console.log(error);
+//   });
 
 export default app;

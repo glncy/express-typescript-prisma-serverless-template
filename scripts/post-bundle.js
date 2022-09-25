@@ -18,6 +18,6 @@ if (!fs.existsSync(publicFolder)) {
   fs.mkdirSync(publicFolder);
 }
 
-// copy folders
+// copy views and public folders
 fsExtra.copySync(`${process.cwd()}/src/views`, viewsFolder);
 fsExtra.copySync(`${process.cwd()}/src/public`, publicFolder);
