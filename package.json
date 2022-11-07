@@ -40,7 +40,7 @@
     "typeorm:migrate": "npm run rimraf && npm run build && npm run typeorm -- migration:run",
     "typeorm:revert": "npm run rimraf && npm run build && npm run typeorm -- migration:revert"
   },
-  "author": "Algocat Studio",
+  "author": "glncy",
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^4.3.1",
